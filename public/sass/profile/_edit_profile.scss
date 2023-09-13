@@ -1,0 +1,172 @@
+@use "../variables/variables" as *;
+
+.pad_profile_edit{
+    padding: 185px 0px;
+}
+.bg_profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../img/Group 13 (1).svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    .profile_edit_content{
+        width: 90%;
+        border-radius: 25px;
+        box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(3px);
+        background-color: rgba(255, 255, 255, 0.266);
+        padding-bottom: 20px;
+        form{
+            .edit_img{
+                width:fit-content;
+                margin: auto;
+                margin-top: 20px;
+                margin-bottom: 50px;
+                img{
+                    width: 150px;
+                    height: 150px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                }
+                .upload{
+                    background-color: #f0bfa3;
+                    width: 50px;
+                    height: 50px; 
+                }
+                input[type="file"]::file-selector-button {
+                    display: none;
+                }
+                input[type="file"] {
+                    width: 30px;
+                    height: 30px;
+                    margin-left: -43px;
+                    color: transparent !important;
+                    background-color: transparent;
+                    color: #f0bfa3;
+                    &::before{
+                        content: "";
+                        width: 30px;
+                        height: 30px;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                        display: block;
+                        background-image: url("../../img/camera.png");
+                    }
+                    &:hover{
+                        &::before{
+                            content: "";
+                            width: 30px;
+                            height: 30px;
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                            display: block;
+                            background-image: url("../../img/camera (1).png");
+                        }
+                    }
+                  }
+            }
+            .edit_name{
+                width: 80%;
+                margin: auto;
+                input{
+                    display: block;
+                    width: 92%;
+                    height: $space_between_inputs;
+                    padding: 8px 15px;
+                    border-radius: 15px;
+                    border-width: 0.1px;
+                    border-color: $input_border_color;
+                    border-style: solid;
+                    background-color: transparent;
+                    margin: auto;
+                    margin-top: 10px;
+                    margin-bottom: 15px;
+                    &:focus{
+                        border-width: 0.1px;
+                        outline-color: $text_headers_color;
+                        border-color: $text_headers_color;
+                        outline-style: solid;
+                    }
+                }
+                .link{
+                    text-decoration: none;
+                    color: $text_headers_color;
+                    text-align: right;
+                    // align-self: center;
+                    // margin-left: 44.5%;
+                }
+            }
+            .submit{
+                padding: 8px 30px;
+                border-radius: 12px;
+                border-color: $input_border_color;
+                border-style: solid;
+                color: $text_headers_color;
+                display: block;
+                margin: auto;
+                cursor: pointer;
+                border-width: 0.1px;
+                background-color: transparent;
+                margin-top: 30px;
+                &:hover{
+                    color: rgb(255, 255, 255);    
+                    background-color: $text_headers_color;
+                    border-color: $text_headers_color;
+                }
+            }
+        }
+    }
+    .adv_edit{
+        width: 90%;
+        margin: auto;
+        margin-top: 20px;
+        p{
+            color: rgba(#3f4045,0.7);
+            span{
+            color: rgba(#f0bfa3,0.7);
+            }
+        }
+    }
+}
+
+@media only screen and (min-width:601px) and (max-width:800px){
+    .bg_profile{
+        .profile_edit_content{
+            width: 80%;
+        }
+        .adv_edit{
+            width: 80%;
+        }
+    }
+}
+
+@media only screen and (min-width:801px) and (max-width:1200px){
+    .bg_profile{
+        .profile_edit_content{
+            width: 60%;
+        }
+        .adv_edit{
+            width: 60%;
+        }
+    }
+}
+
+@media only screen and (min-width:1201px) and (max-width:2500px){
+    .bg_profile{
+        .profile_edit_content{
+            width: 40%;
+        }
+        .adv_edit{
+            width: 40%;
+        }
+    }
+    .pad_profile_edit{
+        padding: 0px 0px;
+        padding-top: 150px;
+        padding-bottom: 0px;
+    }
+}
