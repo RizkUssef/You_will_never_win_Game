@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ChangePasswordRequest;
+use App\Http\Requests\EditProfileRequest;
 use App\Models\User;
-use App\Exceptions\UserExcists;
 use App\Http\Requests\LoginRequest;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\RegisterRequest;
-use App\Models\Opt;
 use App\Models\Otp;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
 
 class UserController extends Controller
@@ -105,7 +103,7 @@ class UserController extends Controller
                 $user_data->update([
                     "email_verified_at"=>time(),
                 ]);
-                return view("pages.intro.intro");
+                return view("login");
             }else{
                 return redirect()->route('error')->withErrors("Access Denied");
             }
@@ -123,6 +121,44 @@ class UserController extends Controller
         }else{
             return redirect()->route("signup")->withErrors("you don't in our coummunity yet, please register first");
         }
+    }
+
+    public function changePasswordHandle(ChangePasswordRequest $request){
+        $user= Auth::user();
+        if(!Hash::check($request->old_password, $user->password)){
+            return redirect()->route('error')->withErrors("wrong password");
+        }elseif(strcmp($request->old_password, $request->password) == 0) {
+            return redirect()->route('error')->withErrors("New Password cannot be same as your old password.");
+        }
+        $new_user = User::find($user->id);
+        $new_user->update([
+            "password"=>Hash::make($request->password)
+        ]);
+        return redirect()->route("user_profile")->with("success","Password Changed Successfully");
+
+    }
+
+    public function editProfileHandle(EditProfileRequest $request){
+        $user = Auth::user();
+        $user_data = User::find($user->id);
+        if ($request->image!=null) {
+            if($user_data->image!=null){
+                Storage::delete($user_data->image);
+                $image_name = Storage::putFile("UserImage", $request->image); //rename - uploads
+            }
+            elseif($user_data->image==null){
+                $image_name = Storage::putFile("UserImage", $request->image); //rename - uploads
+            }
+        }
+        elseif ($request->image == null) {
+            $image_name = $user_data->image;
+        }
+        $user_data->update([
+            "name"=>$request->name,
+            "email"=>$request->email,
+            "image"=>$image_name,
+        ]);
+        return redirect()->route("user_profile")->with("success","Your profile updated sussesfully");
     }
 
 }

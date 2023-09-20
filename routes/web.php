@@ -1,10 +1,11 @@
 <?php
 
 use App\Http\Controllers\Redirect;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ForgetPasswordController;
+use App\Http\Controllers\QuestionsController;
+use App\Models\Questions;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +28,6 @@ Route::post("FTRU/login",[UserController::class,"handleLogin"])->name("access us
 Route::get('/auth/{provider}/redirect',[UserController::class,"redirect"]);
 Route::get('/auth/{provider}/callback',[UserController::class, 'callback']);
 
-Route::get("FTRU/home",[Redirect::class,"intro"])->name("home")->middleware(['auth','user_verify']);
 Route::post("FTRU/logout",[UserController::class,"logout"])->name("logout");
 
 Route::get("FTRU/signin/forget",[ForgetPasswordController::class,"forget_password"])->name("forget_pass");
@@ -45,18 +45,37 @@ Route::post("FTRU/verfiy",[UserController::class,"handleOTP"])->name("verfiy");
 Route::get("otpform",[Redirect::class,"otp"])->name("returnOTP");
 Route::get("resend_otp",[UserController::class,"resendOTP"])->name("resend")->middleware(['throttle:send_email']);
 
-Route::fallback(function(){
-    return redirect()->route('worng_route')->withErrors("Oops! It seems like you've reached an incorrect destination");
+
+
+
+// ? profile
+Route::group(['middleware' => ['auth','user_verify']], function () {
+    Route::get("FTRU/home",[Redirect::class,"intro"])->name("home");
+    Route::get("FTRU/home/profile",[Redirect::class,'profile'])->name('user_profile');
+    Route::get("FTRU/home/profile/edit", [Redirect::class, 'editProfile'])->name('edit_profile');
+    Route::post("FTRU/home/profile/edit", [UserController::class, 'editProfileHandle'])->name('edit_profile_handle');
+    Route::get("FTRU/home/profile/change_pass",[Redirect::class,"changePassword"])->name("change_password");
+    Route::post("FTRU/home/profile/change_pass",[UserController::class,"changePasswordHandle"])->name("change_password_handle");
+
+    Route::get("FTRU/home/question/{id}",[QuestionsController::class,'showOne'])->name('question');
+    Route::get("FTRU/home/first",[QuestionsController::class,'startGame'])->name('first');
+    Route::get("FTRU/home/gameover",[Redirect::class,'gameOver'])->name('gameover');
+    Route::post("FTRU/home/answer",[QuestionsController::class,'handleAnswer'])->name('handle_answer');
 });
 
-Route::get("profile",function(){
-    return view('pages.profile.user_profile');
-});
 
-Route::get("edit",function(){
-    return view('pages.profile.edit_profile');
-});
+// Route::fallback(function(){
+//     return redirect()->route('worng_route')->withErrors("Oops! It seems like you've reached an incorrect destination");
+// });
 
-Route::get("first",function(){
-    return view('pages.questions.firstQuestion');
-});
+// Route::get("profile",function(){
+//     return view('pages.profile.user_profile');
+// });
+
+// Route::get("edit",function(){
+//     return view('pages.profile.edit_profile');
+// });
+
+// Route::get("first",function(){
+//     return view('pages.questions.firstQuestion');
+// });

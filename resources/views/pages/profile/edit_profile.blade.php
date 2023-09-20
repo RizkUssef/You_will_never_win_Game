@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Question</title>
+    <title>Profile Edit</title>
     <link rel = "icon" href ="{{asset('img/FTRU.svg')}}"  type = "image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,19 +22,60 @@
             </div>
         </header>
         <section class="bg_profile pad_profile_edit">
+            @if($errors->has('name'))
+                <section id="section" class="error_container">
+                    <div class="all">
+                        <div class="error_image">
+                            <img src="{{asset("img/name.gif")}}">
+                        </div>
+                        <div class="error_head">
+                            <h1>{{$errors->first('name')}} </h1>
+                        </div>
+                    </div>
+                </section>
+            @endif
+            @if($errors->has('email'))
+                <section id="section" class="error_container">
+                    <div class="all">
+                        <div class="error_image">
+                            <img src="{{asset("img/email.gif")}}">
+                        </div>
+                        <div class="error_head">
+                            <h1>{{$errors->first('email')}} </h1>
+                        </div>
+                    </div>
+                </section>
+            @endif
+            @if($errors->has('image'))
+                <section id="section" class="error_container">
+                    <div class="all">
+                        <div class="error_image">
+                            <img src="{{asset("img/forget.gif")}}">
+                        </div>
+                        <div class="error_head">
+                            <h1>{{$errors->first('image')}} </h1>
+                        </div>
+                    </div>
+                </section>
+            @endif
             <div class="profile_edit_content">
-                <form action="" method="post">
+                <form method="POST" action="{{route("edit_profile_handle")}}"  enctype="multipart/form-data" >
+                    @csrf
                     <div class="edit_img">
+                        @if ($user_data->image != null)
+                        <img src="{{asset("storage")."/".$user_data->image}}" alt="">
+                        @else
                         <img src="{{asset("img/Follow your Dreams.jpeg")}}" alt="">
-                        {{-- <label for="file-input">Upload a file</label> --}}
-                        <input class="upload" title="" placeholder="" type="file" name="" id="">
+                        @endif
+                        <input class="upload" type="file" name="image">
                     </div>
                     <div class="edit_name">
                         <label for="">Name</label>
-                        <input type="text" name="" id="">
+                        <input type="text" name="name" id="" value="{{$user_data->name}}">
+            
                         <label for="">Email</label>
-                        <input type="email" name="" id="">
-                        <a class="link" href="#">Change Password?</a>
+                        <input type="email" name="email" id="" value="{{$user_data->email}}">
+                        <a class="link" href="{{route("change_password")}}">Change Password?</a>
                     </div>
                     <button class="submit" type="submit">Submit</button>
                 </form>
@@ -43,5 +84,12 @@
                 <p>Μην αλλάζετε πολύ τα δεδομένα,<span>σταμάτα να παίζεις</span></p>
             </div>
         </section>
+        <script>
+            var section = document.getElementById("section");
+            function removeSection() {
+                section.parentNode.removeChild(section);
+            }
+            setTimeout(removeSection, 5000);
+        </script>
     </body>
 </html>

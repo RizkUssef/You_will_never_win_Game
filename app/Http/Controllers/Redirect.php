@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class Redirect extends Controller
 {
+
     public function welcome(){
         return view('index');
     }
@@ -37,6 +38,26 @@ class Redirect extends Controller
 
     public function send_email(){
         return view('pages.emails.verfiy');
+    }
+
+    public function profile(){
+        $user= Auth::user();
+        $user_data=User::find($user->id);
+        return view('pages.profile.user_profile',compact("user_data"));
+    }
+
+    public function editProfile(){
+        $user= Auth::user();
+        $user_data=User::find($user->id);
+        return view('pages.profile.edit_profile',compact("user_data"));
+    }
+
+    public function changePassword(){
+        return view("pages.profile.change_password");
+    }
+
+    public function gameOver(){
+        return view('pages.questions.gameover');
     }
 
 }

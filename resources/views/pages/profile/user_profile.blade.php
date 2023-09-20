@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Question</title>
+    <title>{{$user_data->name . " Profile"}}</title>
     <link rel = "icon" href ="{{asset('img/FTRU.svg')}}"  type = "image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,29 +22,58 @@
             </div>
         </header>
         <section class="bg_profile pad_profile">
+            @if(session()->has('success'))
+                <section id="section" class="error_container">
+                    <div class="all">
+                        <div class="error_image">
+                            <img src="{{asset("img/profile_update.gif")}}">
+                        </div>
+                        <div class="error_head">
+                            <h1>{{session()->pull("success")}}</h1>
+                        </div>
+                    </div>
+                </section>
+            @endif
             <div class="profile_content">
                 <div class="img_name">
                     <div class="img">
+                        @if ($user_data->image != null)
+                        <img src="{{asset("storage")."/".$user_data->image}}" alt="">
+                        @else
                         <img src="{{asset("img/Follow your Dreams.jpeg")}}" alt="">
+                        @endif
                     </div>
                     <div class="name">
-                        <h1 class="na">pop</h1>
-                        <h1 class="email">poop@gmail.com</h1>
+                        <h1 class="na">{{Auth::user()->name}}</h1>
+                        <h1 class="email">{{Auth::user()->email}}</h1>
                     </div>
                 </div>
                 <div class="marks">
+                    @if (Auth::user()->wrong_answers != null || Auth::user()->correct_answers != null)
                     <h1 class="title">Your Rate</h1>
-                    <h1 class="num">1/10 <span>bro you're so bad improve yourself, don't be like that</span></h1>
+                    <h1 class="num">Wrong Answer : <span class="grades">{{Auth::user()->wrong_answers}}</span></h1>
+                    <h1 class="num">Correct Answer : <span class="grades">{{Auth::user()->correct_answers}}</span> <span>bro you're so bad improve yourself, don't be like that</span></h1>
+                    @else
+                    <h1 class="title">Your Rate</h1>
+                    <h1 class="num">You don't play yet!! <span class="grades"> START NOOOOOOW</span></h1>
+                    {{-- <h1 class="num">Correct Answer : <span class="grades">{{$user_data->correct_answers}}</span> <span>bro you're so bad improve yourself, don't be like that</span></h1>   --}}
+                    @endif
                 </div>
                 <div class="links">
-                    <a href="#">Play</a>
-                    <a href="#">Edit</a>
-                    <a href="#">Logout</a>
+                    <a href="{{route("first")}}">Play</a>
+                    <a href="{{route("edit_profile")}}">Edit</a>
                 </div>
             </div>
             <div class="adv">
                 <p>Μην στεναχωριέστε, απλά διαβάστε το όνομα του παιχνιδιού και θα καταλάβετε την κατάσταση,<span>Με τους χαιρετισμούς μας</span></p>
             </div>
         </section>
+        <script>
+            var section = document.getElementById("section");
+            function removeSection() {
+                section.parentNode.removeChild(section);
+            }
+            setTimeout(removeSection, 5000);
+        </script>
     </body>
 </html>

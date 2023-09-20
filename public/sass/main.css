@@ -499,13 +499,13 @@
     width: 40%;
   }
 }
-.bg .error_container {
+.bg .error_container, .bg_profile .error_container {
   position: absolute;
   top: 30%;
   width: 70%;
   z-index: 10;
 }
-.bg .error_container .all {
+.bg .error_container .all, .bg_profile .error_container .all {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -518,25 +518,26 @@
           backdrop-filter: blur(3px);
   background-color: rgba(255, 255, 255, 0.3);
 }
-.bg .error_container .all .error_image {
+.bg .error_container .all .error_image, .bg_profile .error_container .all .error_image {
   width: 150px;
   height: 150px;
   margin-bottom: 30px;
 }
-.bg .error_container .all .error_image img {
+.bg .error_container .all .error_image img, .bg_profile .error_container .all .error_image img {
   width: 100%;
   height: 100%;
+  border-radius: 25px;
 }
-.bg .error_container .all .error_head {
+.bg .error_container .all .error_head, .bg_profile .error_container .all .error_head {
   color: #F0BFA3;
   text-align: center;
 }
-.bg .back_btn {
+.bg .back_btn, .bg_profile .back_btn {
   position: absolute;
   bottom: 5%;
   width: 70%;
 }
-.bg .back_btn .link_cont {
+.bg .back_btn .link_cont, .bg_profile .back_btn .link_cont {
   margin: auto;
   width: -moz-fit-content;
   width: fit-content;
@@ -546,19 +547,19 @@
   border-radius: 15px;
   border-style: solid;
 }
-.bg .back_btn .link_cont .ftru_back {
+.bg .back_btn .link_cont .ftru_back, .bg_profile .back_btn .link_cont .ftru_back {
   text-decoration: none;
   color: #F0BFA3;
 }
-.bg .back_btn .link_cont .ftru_back::before {
+.bg .back_btn .link_cont .ftru_back::before, .bg_profile .back_btn .link_cont .ftru_back::before {
   content: "";
   display: none;
 }
-.bg .back_btn .link_cont a {
+.bg .back_btn .link_cont a, .bg_profile .back_btn .link_cont a {
   text-decoration: none;
   color: #F0BFA3;
 }
-.bg .back_btn .link_cont a::before {
+.bg .back_btn .link_cont a::before, .bg_profile .back_btn .link_cont a::before {
   content: "";
   display: inline-block;
   width: 18px;
@@ -568,22 +569,22 @@
   background: url("../../img/back (2).png") no-repeat center center;
   background-size: contain;
 }
-.bg .back_btn .link_cont:hover {
+.bg .back_btn .link_cont:hover, .bg_profile .back_btn .link_cont:hover {
   border-color: #F0BFA3;
   background-color: #F0BFA3;
   cursor: pointer;
 }
-.bg .back_btn .link_cont:hover .ftru_back {
+.bg .back_btn .link_cont:hover .ftru_back, .bg_profile .back_btn .link_cont:hover .ftru_back {
   color: #f1eee9;
 }
-.bg .back_btn .link_cont:hover .ftru_back::before {
+.bg .back_btn .link_cont:hover .ftru_back::before, .bg_profile .back_btn .link_cont:hover .ftru_back::before {
   content: "";
   display: none;
 }
-.bg .back_btn .link_cont:hover a {
+.bg .back_btn .link_cont:hover a, .bg_profile .back_btn .link_cont:hover a {
   color: #f1eee9;
 }
-.bg .back_btn .link_cont:hover a::before {
+.bg .back_btn .link_cont:hover a::before, .bg_profile .back_btn .link_cont:hover a::before {
   content: "";
   display: inline-block;
   width: 18px;
@@ -593,6 +594,74 @@
   background: url("../../img/back (1).png") no-repeat center center;
   background-size: contain;
 }
+.bg .next_btn, .bg_profile .next_btn {
+  position: absolute;
+  bottom: 5%;
+  width: 70%;
+}
+.bg .next_btn .link_cont, .bg_profile .next_btn .link_cont {
+  margin: auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 5px 15px;
+  border-color: rgba(0, 0, 0, 0.37);
+  border-width: 0.3px;
+  border-radius: 15px;
+  border-style: solid;
+}
+.bg .next_btn .link_cont .ftru_back, .bg_profile .next_btn .link_cont .ftru_back {
+  text-decoration: none;
+  color: #F0BFA3;
+}
+.bg .next_btn .link_cont .ftru_back::after, .bg_profile .next_btn .link_cont .ftru_back::after {
+  content: "";
+  display: none;
+}
+.bg .next_btn .link_cont a, .bg_profile .next_btn .link_cont a {
+  text-decoration: none;
+  color: #F0BFA3;
+}
+.bg .next_btn .link_cont a::after, .bg_profile .next_btn .link_cont a::after {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-bottom: -3px;
+  margin-left: 10px;
+  background: url("../../img/forward-button.png") no-repeat center center;
+  background-size: contain;
+}
+.bg .next_btn .link_cont:hover, .bg_profile .next_btn .link_cont:hover {
+  border-color: #F0BFA3;
+  background-color: #F0BFA3;
+  cursor: pointer;
+}
+.bg .next_btn .link_cont:hover .ftru_back, .bg_profile .next_btn .link_cont:hover .ftru_back {
+  color: #f1eee9;
+}
+.bg .next_btn .link_cont:hover .ftru_back::after, .bg_profile .next_btn .link_cont:hover .ftru_back::after {
+  content: "";
+  display: none;
+}
+.bg .next_btn .link_cont:hover a, .bg_profile .next_btn .link_cont:hover a {
+  color: #f1eee9;
+}
+.bg .next_btn .link_cont:hover a::after, .bg_profile .next_btn .link_cont:hover a::after {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-bottom: -3px;
+  background: url("../../img/forward-button (1).png") no-repeat center center;
+  background-size: contain;
+}
+.bg .next_btn_margin_top, .bg_profile .next_btn_margin_top {
+  position: absolute;
+  bottom: -16%;
+}
+.bg .center_all_margin_zero, .bg_profile .center_all_margin_zero {
+  margin-top: -25px;
+}
 
 @media only screen and (min-width: 480px) {
   .bg .error_container {
@@ -600,6 +669,9 @@
   }
   .bg .back_btn {
     bottom: -20%;
+  }
+  .bg .next_btn_margin_top {
+    bottom: 7%;
   }
 }
 @media only screen and (min-width: 600px) {
@@ -826,8 +898,9 @@
   background-size: cover;
 }
 .header .logout {
-  margin-left: 13pc;
-  margin-top: -69px;
+  position: absolute;
+  top: 10px;
+  right: -200px;
 }
 .header .logout button {
   padding: 8px 30px;
@@ -843,53 +916,114 @@
   background-color: #F0BFA3;
   border-color: #F0BFA3;
 }
+.header .profile {
+  text-decoration: none;
+  padding: 7px 30px;
+  border-radius: 12px;
+  border-color: #F0BFA3;
+  border-style: solid;
+  color: #f1eee9;
+  border-width: 0.1px;
+  background-color: #F0BFA3;
+  position: absolute;
+  top: 50px;
+  right: -200px;
+}
+.header .profile:hover {
+  color: #F0BFA3;
+  background-color: transparent;
+  border-color: #B3ABAB;
+  border-width: 0.1px;
+}
 
+@media only screen and (min-width: 370px) {
+  .header .logout {
+    top: 10px;
+    right: -230px;
+  }
+  .header .profile {
+    top: 50px;
+    right: -230px;
+  }
+}
 @media only screen and (min-width: 480px) {
   .header .logout {
-    margin-left: 23pc;
-    margin-top: -69px;
+    top: 10px;
+    right: -335px;
+  }
+  .header .profile {
+    top: 50px;
+    right: -335px;
   }
 }
 @media only screen and (min-width: 600px) {
   .header .logout {
-    margin-left: 31pc;
-    margin-top: -69px;
+    top: 10px;
+    right: -462px;
+  }
+  .header .profile {
+    top: 10px;
+    right: -350px;
   }
 }
 @media only screen and (min-width: 768px) {
   .header .logout {
-    margin-left: 41pc;
-    margin-top: -69px;
+    top: 10px;
+    right: -613px;
+  }
+  .header .profile {
+    top: 10px;
+    right: -500px;
   }
 }
 @media only screen and (min-width: 800px) {
   .header .logout {
-    margin-left: 43pc;
-    margin-top: -69px;
+    top: 10px;
+    right: -630px;
+  }
+  .header .profile {
+    top: 10px;
+    right: -520px;
   }
 }
 @media only screen and (min-width: 1024px) {
   .header .logout {
-    margin-left: 57pc;
-    margin-top: -69px;
+    top: 10px;
+    right: -860px;
+  }
+  .header .profile {
+    top: 10px;
+    right: -740px;
   }
 }
 @media only screen and (min-width: 1370px) {
   .header .logout {
-    margin-left: 78pc;
-    margin-top: -69px;
+    top: 10px;
+    right: -760px;
+  }
+  .header .profile {
+    top: 10px;
+    right: -740px;
   }
 }
 @media only screen and (min-width: 1360px) {
   .header .logout {
-    margin-left: 78pc;
-    margin-top: -69px;
+    top: 10px;
+    right: -1215px;
+  }
+  .header .profile {
+    top: 10px;
+    right: -1100px;
   }
 }
 @media only screen and (min-width: 1500px) {
   .header .logout {
-    margin-left: 88pc;
-    margin-top: -69px;
+    top: 10px;
+    right: -1380px;
+  }
+  .header .profile {
+    top: 10px;
+    right: -1260px;
   }
 }
 .pad_profile {
@@ -926,8 +1060,8 @@
   margin-top: 18px;
 }
 .bg_profile .profile_content .img_name .img {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   margin-top: 10px;
   border-radius: 50%;
 }
@@ -967,9 +1101,14 @@
   margin-bottom: 20px;
 }
 .bg_profile .profile_content .marks .num {
-  font-size: 40px;
+  font-size: 25px;
   font-weight: 900;
   text-align: center;
+}
+.bg_profile .profile_content .marks .num .grades {
+  color: #f0bfa3;
+  display: inline-block;
+  font-size: 25px;
 }
 .bg_profile .profile_content .marks .num span {
   margin-top: 10px;

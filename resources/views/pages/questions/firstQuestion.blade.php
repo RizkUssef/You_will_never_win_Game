@@ -22,32 +22,76 @@
             </div>
         </header>
         <section class="bg">
-            <div class="center_all">
+            {{-- todo make margin top 0px in sass center_all --}}
+            <div class="center_all" style="margin-top: 0px">
                 <div class="Welcome">
                     <h1>You Will Never Win </h1>
                 </div>
-                @if($errors->has('email'))
+                @if($errors->has('answer'))
                     <section id="section" class="error_container">
                         <div class="all">
                             <div class="error_image">
-                                <img src="{{asset("img/no.gif")}}">
+                                <img src="{{asset("img/answer.gif")}}">
                             </div>
                             <div class="error_head">
-                                <h1>{{$errors->first('email')}} </h1>
+                                <h1>{{$errors->first('answer')}} </h1>
                             </div>
                         </div>
                     </section>
                 @endif
-                <div class="login_container">
-                    <h1 style="font-family: 'Amiri', serif;">ما هو سر التحنيط؟</h1>
-                    <form action="{{route('forget_password_handle')}}" method="POST">
-                        @csrf
-                        <label for="">Enter your answer</label>
-                        <input type="text" name="answer">
-                        <button class="submit" type="submit">Submit</button>
-                    </form>
-                </div>
+
+                @if(session()->has('real_answer'))
+                    @php
+                        $real = session()->pull("real_answer");
+                    @endphp
+                    <section id="section" class="error_container">
+                        <div class="all">
+                            <div class="error_image">
+                                <img src="{{asset("storage")."/".$real->error_image}}">
+                            </div>
+                            <div class="error_head">
+                                <h1>{{$real->error_text}}</h1>
+                            </div>
+                        </div>
+                    </section>
+                @endif
+
+                @if(session()->has('right_answer'))
+                    <section id="section" class="error_container">
+                        <div class="all">
+                            <div class="error_image">
+                                <img src="{{asset("img/right.gif")}}">
+                            </div>
+                            <div class="error_head">
+                                <h1>الله اكبر عليك اية الحلاوه دى</h1>
+                            </div>
+                        </div>
+                    </section>
+                    @php
+                        session()->forget('right_answer');
+                    @endphp
+                @endif
+
+                    <div class="login_container">
+                        <h1 style="font-family: 'Amiri', serif;">{{$question->question}}</h1>
+                        <form action="{{route('handle_answer')}}" method="POST">
+                            @csrf
+                            <label for="">Enter your answer</label>
+                            <input type="hidden" name = "id" value="{{encrypt($question->id)}}">
+                            <input style="padding-right: 10px" dir="rtl" type="text" name="answer">
+                            <button class="submit" type="submit">Submit</button>
+                        </form>
+                    </div>
+                    
+                {{-- @endif --}}
             </div>
+
+            <section class="next_btn next_btn_margin_top">
+                <div class="link_cont">
+                    <a href="{{route("question",["id"=>$next])}}">Next</a>
+                </div>
+            </section>
+            
         </section>
         <script>
             var section = document.getElementById("section");

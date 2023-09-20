@@ -42,10 +42,28 @@
                 </div>
             </section>
         @endif
+
+
+        
+        
         <div class="center_all">
             <div class="Welcome">
                 <h1>Welcome Back To Amenta </h1>
             </div>
+            @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <section id="section" class="error_container">
+                    <div class="all">
+                        <div class="error_image">
+                            <img src="{{asset("img/answer.gif")}}">
+                        </div>
+                        <div class="error_head">
+                            <h1>{{$error}}</h1>
+                        </div>
+                    </div>
+                </section>
+            @endforeach
+            @endif
             <div class="login_container">
                 <h1>Login</h1>
                 @if (session()->has('success'))

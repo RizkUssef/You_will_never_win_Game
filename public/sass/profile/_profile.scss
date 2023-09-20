@@ -27,8 +27,8 @@
             margin: auto;
             margin-top: 18px;
             .img{
-                width: 100px;
-                height: 100px;
+                width: 80px;
+                height: 80px;
                 margin-top: 10px;
                 border-radius: 50%;
                 img{
@@ -66,9 +66,14 @@
                 margin-bottom: 20px;
             }
             .num{
-                font-size: 40px;
+                font-size: 25px;
                 font-weight: 900;
                 text-align: center;
+                .grades{
+                    color: #f0bfa3;
+                    display: inline-block;
+                    font-size: 25px;
+                }
                 span{
                     margin-top: 10px;
                     font-size: 15px;

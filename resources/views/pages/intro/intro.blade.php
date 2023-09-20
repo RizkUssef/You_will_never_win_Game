@@ -23,9 +23,10 @@
                 <button>Logout</button>
             </form>
         </div>
+        <a class="profile" href="{{route("user_profile")}}">Profile</a>
     </header>
     <section class="bg">
-        <div class="center_all">
+        <div class="center_all center_all_margin_zero">
             <div class="intro_container">
                 <div class="all">
                     <div class="error_image">
@@ -37,6 +38,11 @@
                 </div>
             </div>
         </div>
+        <section class="next_btn next_btn_margin_top">
+            <div class="link_cont ">
+                <a href="{{route("first")}}">Start</a>
+            </div>
+        </section>
     </section>
 </body>
 

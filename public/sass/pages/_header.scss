@@ -10,16 +10,17 @@
         background-size: cover;
     }
     .logout{
-        margin-left: 13pc;
-        margin-top: -69px;
+        // margin-left: 13pc;
+        // margin-top: -69px;
+        position: absolute;
+        top: 10px;
+        right: -200px;
         button{
             padding: 8px 30px;
             border-radius: 12px;
             border-color: $input_border_color;
             border-style: solid;
             color: $text_headers_color;
-            // display: block;
-            // margin: auto;
             border-width: 0.1px;
             background-color: transparent;
             &:hover{
@@ -30,13 +31,50 @@
         }
         
     }
+    .profile{
+        text-decoration: none;
+        padding: 7px 30px;
+        border-radius: 12px;
+        border-color: $text_headers_color;
+        border-style: solid;
+        color: #f1eee9;
+        border-width: 0.1px;
+        background-color: $text_headers_color;
+        position: absolute;
+        top: 50px;
+        right: -200px;
+        &:hover{
+            color: $text_headers_color;    
+            background-color: transparent;
+            border-color: $input_border_color;
+            border-width: 0.1px;
+
+        }
+    }
+}
+
+@media only screen and (min-width: 370px){
+    .header{
+        .logout{
+            top: 10px;
+            right: -230px;
+        }
+        .profile{
+            top: 50px;
+            right: -230px;
+        }
+    }
 }
 
 @media only screen and (min-width: 480px){
     .header{
         .logout{
-            margin-left: 23pc;
-            margin-top: -69px;
+            top: 10px;
+            right: -335px;
+        }
+        .profile{
+            top: 50px;
+            right: -335px;
         }
     }
 }
@@ -44,8 +82,12 @@
 @media only screen and (min-width: 600px){
     .header{
         .logout{
-            margin-left: 31pc;
-            margin-top: -69px;
+            top: 10px;
+            right: -462px;
+        }
+        .profile{
+            top: 10px;
+            right: -350px;
         }
     }
 }
@@ -53,8 +95,12 @@
 @media only screen and (min-width: 768px){
     .header{
         .logout{
-            margin-left: 41pc;
-            margin-top: -69px;
+            top: 10px;
+            right: -613px;
+        }
+        .profile{
+            top: 10px;
+            right: -500px;
         }
     }
 }
@@ -62,8 +108,12 @@
 @media only screen and (min-width: 800px){
     .header{
         .logout{
-            margin-left: 43pc;
-            margin-top: -69px;
+            top: 10px;
+            right: -630px;
+        }
+        .profile{
+            top: 10px;
+            right: -520px;
         }
     }
 }
@@ -71,32 +121,48 @@
 @media only screen and (min-width: 1024px){
     .header{
         .logout{
-            margin-left: 57pc;
-            margin-top: -69px;
+            top: 10px;
+            right: -860px;
+        }
+        .profile{
+            top: 10px;
+            right: -740px;
         }
     }
 }
 @media only screen and (min-width: 1370px){
     .header{
         .logout{
-            margin-left: 78pc;
-            margin-top: -69px;
+            top: 10px;
+            right: -760px;
+        }
+        .profile{
+            top: 10px;
+            right: -740px;
         }
     }
 }
 @media only screen and (min-width: 1360px){
     .header{
         .logout{
-            margin-left: 78pc;
-            margin-top: -69px;
+            top: 10px;
+            right: -1215px;
+        }
+        .profile{
+            top: 10px;
+            right: -1100px;
         }
     }
 }
 @media only screen and (min-width: 1500px){
     .header{
         .logout{
-            margin-left: 88pc;
-            margin-top: -69px;
+            top: 10px;
+            right: -1380px;
+        }
+        .profile{
+            top: 10px;
+            right: -1260px;
         }
     }
 }
